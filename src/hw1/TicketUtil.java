@@ -15,12 +15,12 @@ public class TicketUtil {
     public static final int ZONE_COST_DISCOUNTED = 120;
     public static final int INVALID_ZONE = 0;
 
-    public static int calulateRideCost(int startZone, int endZone, boolean discounted) {
-        return discounted ? Math.abs(startZone - endZone) * ZONE_COST_DISCOUNTED : Math.abs(startZone - endZone) * ZONE_COST;
+    public static int calculateRideCost(int startZone, int endZone, boolean discounted) {
+        return discounted ? (Math.abs(startZone - endZone) * ZONE_COST_DISCOUNTED) + RIDE_COST_DISCOUNTED : (Math.abs(startZone - endZone) * ZONE_COST) + RIDE_COST;
     }
 
-    public static int calulateRideCost(int numRides, int startZone, int endZone, boolean discounted) {
-        return discounted ? (Math.abs(startZone - endZone) * ZONE_COST_DISCOUNTED) * numRides : (Math.abs(startZone - endZone) * ZONE_COST) * numRides;
+    public static int calculateRideCost(int numRides, int startZone, int endZone, boolean discounted) {
+        return discounted ? ((Math.abs(startZone - endZone) * ZONE_COST_DISCOUNTED) + RIDE_COST_DISCOUNTED) * numRides : ((Math.abs(startZone - endZone) * ZONE_COST) + RIDE_COST) * numRides;
     }
 
     public static int getMinimumFare(boolean discounted) {
