@@ -5,36 +5,46 @@ package hw1;
  */
 public class Ticket {
 
-    public Ticket(int value, boolean discounted) {
+    private int startZone;
+    private boolean isInTransit;
+    private boolean isFareDiscounted;
+    private int ticketBalance;
 
+    public Ticket(int value, boolean discounted) {
+        ticketBalance = value;
+        isFareDiscounted = discounted;
     }
 
     public void beginTrip(int zone) {
-
+        startZone = zone;
+        isInTransit = true;
     }
 
     public int getStartZone() {
-
-        return 0;
+        return isInTransit ? startZone : TicketUtil.INVALID_ZONE;
     }
 
     public boolean isDiscounted() {
 
-        return false;
+        return isFareDiscounted;
     }
 
     public int getBalance() {
 
-        return 0;
+        return ticketBalance;
     }
 
     public boolean charge(int rideCost) {
-
-        return false;
+        if (ticketBalance < TicketUtil.RIDE_COST) {
+            return false;
+        } else {
+            ticketBalance -= TicketUtil.RIDE_COST;
+            return true;
+        }
     }
 
     public boolean isInTransit() {
 
-        return false;
+        return isInTransit;
     }
 }
