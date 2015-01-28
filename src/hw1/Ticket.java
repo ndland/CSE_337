@@ -35,10 +35,10 @@ public class Ticket {
     }
 
     public boolean charge(int rideCost) {
-        if (ticketBalance < TicketUtil.RIDE_COST) {
+        if (ticketBalance < rideCost) {
             return false;
         } else {
-            ticketBalance -= TicketUtil.RIDE_COST;
+            ticketBalance -= rideCost;
             return true;
         }
     }

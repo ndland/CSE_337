@@ -5,32 +5,41 @@ package hw1;
  */
 public class TicketMachine {
 
+    private int totalNumberOfTicketsSold = 0;
+    private int totalSalesOfTickets = 0;
+
     public  TicketMachine() {
 
     }
 
     public Ticket purchaseTicket(int startZone, int endZone, boolean discounted) {
+        totalNumberOfTicketsSold++;
+        totalSalesOfTickets += TicketUtil.calculateRideCost(startZone, endZone, discounted);
 
-        return null;
+        return new Ticket(TicketUtil.calculateRideCost(startZone, endZone, discounted), discounted);
     }
 
     public Ticket purchaseTicket(int numRides, int startZone, int endZone, boolean discounted) {
+        totalNumberOfTicketsSold++;
+        totalSalesOfTickets += TicketUtil.calculateRideCost(numRides, startZone, endZone, discounted);
 
-        return null;
+        return new Ticket(TicketUtil.calculateRideCost(numRides, startZone, endZone, discounted), discounted);
     }
 
     public Ticket purchaseTicket(int amount, boolean discounted) {
+        totalNumberOfTicketsSold++;
+        totalSalesOfTickets += amount;
 
-        return null;
+        return new Ticket(amount, discounted);
     }
 
     public int totalTickets() {
 
-        return 0;
+        return totalNumberOfTicketsSold;
     }
 
     public int totalCost() {
 
-        return 0;
+        return totalSalesOfTickets;
     }
 }
