@@ -17,7 +17,13 @@ public class MatchingRule {
 	}
 	
 	public boolean matches(char sourceChar, char targetChar) {
-		return true;
+        for (int i = 0; i < source.length(); i++) {
+            if (source.charAt(i) == sourceChar) {
+                if (i >= target.length() || target.charAt(i) == targetChar)
+                    return true;
+            }
+        }
+        return false;
 	}
 	
 	public boolean isValidSource(String s) {
