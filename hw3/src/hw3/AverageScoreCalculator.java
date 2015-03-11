@@ -9,29 +9,23 @@ import java.util.List;
  */
 public class AverageScoreCalculator {
 
-    List<Integer> ints = new ArrayList<Integer>();
+    List<Integer> numbersInLine = new ArrayList<Integer>();
     List<String> names = new ArrayList<String>();
+    StringBuilder sb = new StringBuilder();
+    String inputFileName;
+    String outputFileName;
 
     public AverageScoreCalculator(String relativeInputFileName, String relativeOutputFileName) {
-
+        inputFileName = relativeInputFileName;
+        outputFileName = relativeOutputFileName;
     }
 
     public void writeAverageScore() {
-        double johnAvg = (ints.get(0) + ints.get(1) + ints.get(2)) / 3.0;
-        double joeAvg = (ints.get(3) + ints.get(4)) / 2.0;
-        double joevAvg = (ints.get(5) + ints.get(6) + ints.get(7)) / 3.0;
-        double leslieAvg = (ints.get(8) + ints.get(9) + ints.get(10) + ints.get(11)) / 4.0;
+        readFile();
         try {
-            FileWriter fw = new FileWriter("out.txt");
+            FileWriter fw = new FileWriter(outputFileName);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(names.get(0) + " " + names.get(1));
-            bw.write(" " + (int) Math.ceil(johnAvg));
-            bw.write("\n" + names.get(2) + " " + names.get(3));
-            bw.write(" " + (int) Math.ceil(joeAvg));
-            bw.write("\n" + names.get(4) + " " + names.get(5));
-            bw.write(" " + (int) Math.ceil(joevAvg));
-            bw.write("\n" + names.get(6) + " " + names.get(7));
-            bw.write(" " + (int) Math.ceil(leslieAvg));
+            bw.write(sb.toString());
             bw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -43,9 +37,9 @@ public class AverageScoreCalculator {
 
     }
 
-    public String readFile() {
+    private void readFile() {
         try {
-            InputStream is = new FileInputStream(new File("test.txt"));
+            InputStream is = new FileInputStream(new File(inputFileName));
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line;
 
@@ -54,18 +48,36 @@ public class AverageScoreCalculator {
                 String[] strings = line.split(" ");
                 for (String string : strings) {
                     if (string.matches("\\d+")) {
-                        ints.add(Integer.valueOf(string));
+                        numbersInLine.add(Integer.valueOf(string));
                     } else if (string.matches("[a-zA-Z]+")){
                         names.add(string);
                     }
+                }
+                if (!names.isEmpty() && !numbersInLine.isEmpty()) {
+                    fileContentBuffer();
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        writeAverageScore();
-        System.out.println("Ints: " + ints.toString());
-        System.out.println("Names: " + names.toString());
-        return "";
+    }
+
+    private double average() {
+        double sum = 0;
+        for(Integer element : numbersInLine) {
+            sum += element;
+        }
+        return sum / (double) numbersInLine.size();
+    }
+
+    private void fileContentBuffer() {
+        for (String name : names) {
+            sb.append(name);
+            sb.append(" ");
+        }
+        sb.append((int) Math.ceil(average()));
+        sb.append("\n");
+        numbersInLine.clear();
+        names.clear();
     }
 }
