@@ -9,6 +9,6 @@ public class PalindromeSelector implements Predicate {
 
     @Override
     public boolean accept(String s) {
-        return false;
+        return (s.equals(new StringBuffer(s).reverse().toString()));
     }
 }

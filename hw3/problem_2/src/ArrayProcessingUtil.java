@@ -37,8 +37,13 @@ public class ArrayProcessingUtil
    */
   public static ArrayList<String> select(String[] arr, Predicate predicate)
   {
-    // TODO
-    return null;
+      ArrayList<String> result = new ArrayList<String>();
+      for (int i = 0; i < arr.length; ++i) {
+          if (predicate.accept(arr[i])) {
+              result.add(arr[i]);
+          }
+      }
+      return result;
   }
   
   /**
@@ -54,10 +59,14 @@ public class ArrayProcessingUtil
    * @return
    *   list of all transformed selected strings, in the same order as given
    */
-  public static ArrayList<String> apply(String[] arr, Processor processor, Predicate predicate)
-  {
-    // TODO
-    return null;
+  public static ArrayList<String> apply(String[] arr, Processor processor, Predicate predicate) {
+      ArrayList<String> result = new ArrayList<String>();
+      for (int i = 0; i < arr.length; ++i) {
+          if (predicate.accept(processor.process(arr[i]))) {
+              result.add(arr[i]);
+          }
+      }
+      return result;
   }
 
 
