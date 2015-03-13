@@ -6,6 +6,7 @@ public class MainClass {
         Encoder en = new Encoder(10);
 
         System.out.println(en.process("abc"));
-        System.out.println(en.process("xyz"));
+        System.out.println(en.process("ABCD"));
+        System.out.println(en.process("xYz"));
     }
 }
