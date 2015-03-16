@@ -7,7 +7,7 @@ public class ArrayProcessingUtil
 {
 
   /**
-   * Applies a Processor to every string in the given array, 
+   * Applies a Processor to every string in the given array,
    * returning a list of the transformed strings.
    * @param arr
    *   given array of strings
@@ -25,7 +25,7 @@ public class ArrayProcessingUtil
     }
     return result;
   }
-  
+
   /**
    * Returns all strings in the given array satisfying the given Predicate.
    * @param arr
@@ -45,7 +45,7 @@ public class ArrayProcessingUtil
       }
       return result;
   }
-  
+
   /**
    * Applies a Processor to all strings in the given array that satisfy
    * the given Predicate, returning a list of the transformed selected
